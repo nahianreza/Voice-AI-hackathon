@@ -10,7 +10,8 @@ load_dotenv()
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "C:/Users/nahia/Downloads/voice-ai-432806-c232ffa6b92c.json"
+
 
 
 def record_audio(filename, duration=5):
@@ -55,12 +56,12 @@ def transcribe_audio(filename):
 
 def get_openai_response(text):
     prompt = f"The user said: {text}. Please understand the user's question and answer it in a friendly manner."
-    response = openai.Completion.create(
-        model="text-davinci-003",
-        prompt=prompt,
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": prompt}],
         max_tokens=50
     )
-    return response.choices[0].text.strip() 
+    return response.choices[0].message['content'].strip() 
 
 
     
