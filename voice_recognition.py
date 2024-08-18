@@ -10,7 +10,7 @@ load_dotenv()
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "C:/Users/nahia/Downloads/voice-ai-432806-c232ffa6b92c.json"
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "/Users/nahianreza/Downloads/voice-ai-432806-ba8a9f73ec31.json"
 
 
 
