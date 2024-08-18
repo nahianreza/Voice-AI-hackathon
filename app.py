@@ -14,7 +14,7 @@ def voice_command():
         record_audio(filename)
         transcription = transcribe_audio(filename)
         response = get_openai_response(transcription)
-        return jsonify({"response": response})
+        return jsonify({"transcription": transcription,"response": response})
     except Exception as e:
         app.logger.error(f"An error occurred in voice_command: {str(e)}")
         return jsonify({"error": str(e)}), 500

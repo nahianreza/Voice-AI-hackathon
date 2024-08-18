@@ -19,6 +19,7 @@
 <body>
     <h1>Voice Command App</h1>
     <button id = "recordButton">Start Recording</button>
+    <p id="transcribedText"></p>
     <p id="response"></p>
 
     <script>
@@ -26,6 +27,7 @@
             fetch('/voice_command', { method: 'POST' })
             .then(response => response.json())
             .then(data => {
+                document.getElementById("transcribedText").innerText = "Prompt: " + data.transcription;
                 document.getElementById("response").innerText = "Response: " + data.response;
             })
             .catch(error => {
