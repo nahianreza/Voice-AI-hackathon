@@ -54,14 +54,18 @@ def transcribe_audio(filename):
         print(f"Transcript: {result.alternatives[0].transcript}")
         return result.alternatives[0].transcript   
 
+conversation_history = []
 def get_openai_response(text):
-    prompt = f"The user said: {text}. Please understand the user's question and answer it in a friendly manner."
+    conversation_history.append(f"User: {text}")
+    prompt = "\n".join(conversation_history) + "\nAI:"
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[{"role": "user", "content": prompt}],
-        max_tokens=50
+        max_tokens=150
     )
-    return response.choices[0].message['content'].strip() 
+    ai_response = response.choices[0].message['content'].strip()
+    conversation_history.append(f"AI: {ai_response}")
+    return ai_response
 
 
     
